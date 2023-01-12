@@ -1,0 +1,20 @@
+version: '3'
+services:
+  v80:
+    build:
+      context: .
+      dockerfile: Dockerfile.80
+    volumes:
+      - ../:/var/www/html
+  v81:
+    build:
+      context: .
+      dockerfile: Dockerfile.81
+    volumes:
+      - ../:/var/www/html
+  v82:
+    build:
+      context: .
+      dockerfile: Dockerfile.82
+    volumes:
+      - ../:/var/www/html
