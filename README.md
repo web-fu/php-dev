@@ -19,11 +19,7 @@ Run ``` docker-compose up -d ``` to create three containers, one for each PHP ve
 
 Any folder in the project parent folder is mapped into ``` /var/www/html/<your project> ```
 
-Run ``` docker exec -it php-dev-v80-1 bash ``` for PHP 8.0
-
-Run ``` docker exec -it php-dev-v81-1 bash ``` for PHP 8.1
-
-Run ``` docker exec -it php-dev-v82-1 bash ``` for PHP 8.2
+See Makefile to check available commands
 
 In any of the container you can run composer and test your code.
 
