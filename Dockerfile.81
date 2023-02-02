@@ -1,21 +1,39 @@
-FROM php:8.1-fpm
+# Install PHP
+FROM php:8.1-cli
 
-RUN docker-php-ext-install mysqli
-
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
+# Install required packages
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
+    unzip \
+    libicu-dev \
+    libxml2-dev \
+    libfreetype6-dev \
+    libjpeg-dev \
     libpng-dev \
     libonig-dev \
-    libxml2-dev \
     libzip-dev \
-    zlib1g-dev \
-    zip \
-    unzip \
-    vim
+    && rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+# Enable Xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
-WORKDIR /var/www/html
+# Configure Xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d/
+
+# Enable PHP lib
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+        intl \
+        bcmath \
+        gd \
+        soap \
+        zip \
+        pdo_mysql
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Change workdir
+WORKDIR /app
+
+USER www-data

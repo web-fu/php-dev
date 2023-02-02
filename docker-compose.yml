@@ -5,16 +5,19 @@ services:
       context: .
       dockerfile: Dockerfile.80
     volumes:
-      - ../:/var/www/html
+      - ../:/app
+    tty: true
   v81:
     build:
       context: .
       dockerfile: Dockerfile.81
     volumes:
-      - ../:/var/www/html
+      - ../:/app
+    tty: true
   v82:
     build:
       context: .
       dockerfile: Dockerfile.82
     volumes:
-      - ../:/var/www/html
+      - ../:/app
+    tty: true
