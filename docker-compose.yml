@@ -5,19 +5,25 @@ services:
       context: .
       dockerfile: Dockerfile.80
     volumes:
-      - ../:/app
+      - ../:/app:rw
+      - ./var/.coverage:/opt/phpstorm-coverage/:rw
+    container_name: php-dev-v80
     tty: true
   v81:
     build:
       context: .
       dockerfile: Dockerfile.81
     volumes:
-      - ../:/app
+      - ../:/app:rw
+      - ./var/.coverage:/opt/phpstorm-coverage/:rw
+    container_name: php-dev-v81
     tty: true
   v82:
     build:
       context: .
       dockerfile: Dockerfile.82
     volumes:
-      - ../:/app
+      - ../:/app:rw
+      - ./var/.coverage:/opt/phpstorm-coverage/:rw
+    container_name: php-dev-v82
     tty: true
